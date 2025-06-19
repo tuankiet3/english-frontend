@@ -1,38 +1,340 @@
-.App {
+:root {
+  --background-color: #ffffff;
+  --text-color: #121212;
+  --primary-color: #333;
+  --primary-hover-color: #555;
+  --border-color: #e0e0e0;
+  --card-bg: #f9f9f9;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --success-color: #28a745;
+  --error-color: #dc3545;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+h1,
+h2 {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Forms & Inputs --- */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: var(--primary-hover-color);
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* --- Navigation --- */
+.navbar {
+  background-color: var(--background-color);
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* --- Home Page --- */
+.function-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.function-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
   text-align: center;
+  text-decoration: none;
+  color: var(--text-color);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.function-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.function-card h3 {
+  margin-top: 0;
+  color: var(--primary-color);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* --- Topic Management --- */
+.topic-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.topic-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Flashcard --- */
+.flashcard-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
+}
+
+.flashcard {
+  width: 500px;
+  height: 300px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+}
+
+.flashcard.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  font-size: 2rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.flashcard-front {
+  background-color: var(--card-bg);
+}
+
+.flashcard-back {
+  background-color: var(--primary-color);
   color: white;
+  transform: rotateY(180deg);
 }
 
-.App-link {
-  color: #61dafb;
+.flashcard-nav {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* --- Quiz Pages --- */
+.quiz-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+.quiz-question {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.quiz-feedback {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-align: center;
+}
+.feedback-correct {
+  background-color: #e9f7ef;
+  color: var(--success-color);
+}
+.feedback-incorrect {
+  background-color: #fbe9eb;
+  color: var(--error-color);
+}
+/* =================================== */
+/* ===  CSS CHO RESPONSIVE DESIGN  === */
+/* =================================== */
+
+/* Áp dụng cho máy tính bảng và điện thoại (màn hình nhỏ hơn 768px) */
+@media (max-width: 768px) {
+  .container {
+    margin-top: 1.5rem;
+    padding: 0 1rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Trang chủ: các ô chức năng sẽ xếp chồng lên nhau thành 1 cột */
+  .function-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Flashcard: thu nhỏ kích thước để vừa với màn hình điện thoại */
+  .flashcard {
+    width: 95%;
+    max-width: 400px;
+    height: 250px;
+  }
+
+  .flashcard-front,
+  .flashcard-back {
+    font-size: 1.8rem;
+  }
+
+  /* Các nút điều hướng của Flashcard sẽ xếp chồng lên nhau */
+  .flashcard-nav {
+    flex-direction: column;
+    width: 95%;
+    max-width: 400px;
+    gap: 0.5rem;
+  }
+
+  .flashcard-nav button {
+    width: 100%;
+  }
+
+  /* Hộp quiz: giảm padding và cho phép chữ dài xuống dòng */
+  .quiz-container {
+    padding: 1.5rem;
+  }
+
+  .quiz-question {
+    font-size: 1.3rem;
+    word-break: break-word; /* Cho phép từ dài xuống dòng nếu cần */
+  }
+
+  /* Cho phép các nút trong form quiz có thể xuống dòng trên màn hình hẹp */
+  .quiz-container form div {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các nút xuống dòng */
+    gap: 0.5rem;
+  }
+}
+
+/* Áp dụng cho điện thoại màn hình nhỏ (nhỏ hơn 480px) */
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+
+  .container {
+    margin-top: 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  input[type="text"],
+  select {
+    padding: 0.65rem;
+    font-size: 0.9rem;
+  }
+
+  .flashcard {
+    height: 220px;
+  }
+
+  .flashcard-front,
+  .flashcard-back {
+    font-size: 1.5rem;
+  }
+
+  /* Thu nhỏ chữ của từ bị che để vừa màn hình */
+  .quiz-question {
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
   }
 }
