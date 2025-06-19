@@ -1,8 +1,11 @@
 // src/api/index.js
 import axios from "axios";
 
+// URL này sẽ là URL trên Vercel khi chạy production, hoặc localhost khi chạy ở máy
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 const API = axios.create({
-  baseURL: "http://localhost:5000/api", // Đảm bảo cổng này khớp với backend của bạn
+  baseURL: `${API_URL}/api`, // Thêm /api vì trong backend bạn đã cấu hình app.use('/api', ...)
 });
 
 // Topic API
