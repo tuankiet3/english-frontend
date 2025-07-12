@@ -8,6 +8,9 @@ import AddNewWord from "./pages/AddNewWord";
 import Flashcard from "./pages/Flashcard";
 import FillInBlank from "./pages/FillInBlank";
 import Translate from "./pages/Translate";
+import Search from "./pages/Search";
+import DeleteVocabulary from "./pages/DeleteVocabulary";
+import UpdateVocabulary from "./pages/UpdateVocabulary";
 import "./App.css";
 
 function App() {
@@ -22,6 +25,9 @@ function App() {
           <Route path="/flashcard" element={<Flashcard />} />
           <Route path="/fill-in-blank" element={<FillInBlank />} />
           <Route path="/translate" element={<Translate />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/delete-vocabulary" element={<DeleteVocabulary />} />
+          <Route path="/update-vocabulary" element={<UpdateVocabulary />} />
         </Routes>
       </main>
     </Router>

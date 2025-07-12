@@ -17,3 +17,9 @@ export const fetchVocabularyByTopic = (topicId) =>
   API.get(`/topics/${topicId}/vocabulary`);
 export const createVocabulary = (topicId, vocabData) =>
   API.post(`/topics/${topicId}/vocabulary`, vocabData);
+export const deleteVocabulary = (vocabularyId) =>
+  API.delete(`/vocabulary/${vocabularyId}`);
+export const updateVocabulary = (vocabularyId, vocabData) =>
+  API.put(`/vocabulary/${vocabularyId}`, vocabData);
+export const searchVocabularyByMeaning = (vietnameseMeaning) =>
+  API.get(`/vocabulary/search`, { params: { meaning: vietnameseMeaning } });

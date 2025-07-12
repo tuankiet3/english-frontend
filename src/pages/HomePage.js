@@ -27,6 +27,18 @@ const HomePage = () => {
           <h3>Điền vào chỗ trống</h3>
           <p>Hoàn thành câu với từ đúng.</p>
         </Link>
+        <Link to="/search" className="function-card">
+          <h3>Tìm kiếm từ vựng</h3>
+          <p>Tìm kiếm từ vựng theo từ khóa.</p>
+        </Link>
+        <Link to="delete-vocabulary" className="function-card">
+          <h3>Xóa từ vựng</h3>
+          <p>Xóa từ vựng khỏi chủ đề.</p>
+        </Link>
+        <Link to="/update-vocabulary" className="function-card">
+          <h3>Cập nhật từ vựng</h3>
+          <p>Cập nhật thông tin từ vựng.</p>
+        </Link>
       </div>
     </div>
   );
